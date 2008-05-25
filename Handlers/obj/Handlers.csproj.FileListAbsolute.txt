@@ -1,0 +1,5 @@
+E:\Webs\vertigo_new\Handlers\bin\Debug\Handlers.dll
+E:\Webs\vertigo_new\Handlers\bin\Debug\Handlers.pdb
+E:\Webs\vertigo_new\Handlers\obj\Debug\ResolveAssemblyReference.cache
+E:\Webs\vertigo_new\Handlers\obj\Debug\Handlers.dll
+E:\Webs\vertigo_new\Handlers\obj\Debug\Handlers.pdb
