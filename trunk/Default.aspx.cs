@@ -82,7 +82,6 @@ public partial class _Default : PageBaseClass
         module.ModuleDefinitionId = int.Parse(ModuleDropDownList.SelectedItem.Value);        
         module.PanelName = "CentreArea";
         module.ModuleOrder = CentreArea.Controls.Count + 1;
-        Module newmodule = ModuleData.NewModule(module);
-                
+        Module newmodule = ModuleData.NewModule(module);                
     }
 }
