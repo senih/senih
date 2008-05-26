@@ -24,12 +24,17 @@ public partial class _Default : PageBaseClass
             if (User.IsInRole("administrators"))
                 AddModulePanel.Visible = true;
             else AddModulePanel.Visible = false;
-            LeftArea.Controls.Add(menu);
+            LeftArea.Controls.Add(menu);            
         }
 
     }
 
-    protected void Page_Init(object sender, EventArgs e)
+    protected void Page_PreLoad(object sender, EventArgs e)
+    {        
+        LoadPageContent();
+    }
+        
+    protected void LoadPageContent()
     {
         menu.DataSource = source;
         menu.DataBind();        
@@ -54,10 +59,17 @@ public partial class _Default : PageBaseClass
             Module module = ModuleData.LoadModuleData(moduleid);            
             string filename = ModuleData.GetModuleType(module.ModuleDefinitionId);
             ModuleControlBaseClass control = new ModuleControlBaseClass(module.ModuleId);
-            control.LoadControl(filename);
-
-            ContentPlaceHolder panel = (ContentPlaceHolder)Page.FindControl(module.PanelName);
-            panel.Controls.Add(control);
+            int temp1 = control.ModuleId;
+            control = (ModuleControlBaseClass)LoadControl(filename);
+            control.ModuleId = temp1;
+            control.ViewMode = ViewMode.Edit;
+                                                
+            if (module.PanelName == "CentreArea")
+                CentreArea.Controls.Add(control);
+            if (module.PanelName == "LeftArea")
+                LeftArea.Controls.Add(control);
+            if (module.PanelName == "RightArea")
+                RightArea.Controls.Add(control);
         }
 
         HtmlMeta keywords = new HtmlMeta();
@@ -82,6 +94,16 @@ public partial class _Default : PageBaseClass
         module.ModuleDefinitionId = int.Parse(ModuleDropDownList.SelectedItem.Value);        
         module.PanelName = "CentreArea";
         module.ModuleOrder = CentreArea.Controls.Count + 1;
-        Module newmodule = ModuleData.NewModule(module);                
+        Module newmodule = ModuleData.NewModule(module);
+
+        if (module.ModuleTitle == "HTML")
+        {
+            HTMLModule newhtmlmodule = new HTMLModule();
+            newhtmlmodule.CreatedByUser = User.Identity.Name;
+            newhtmlmodule.CreatedDate = DateTime.Now;
+            newhtmlmodule.ModuleId = module.ModuleId;
+            newhtmlmodule = HTMLModuleData.NewHTMLModule(newhtmlmodule);
+        }
+        Response.Redirect(Request.RawUrl);
     }
 }

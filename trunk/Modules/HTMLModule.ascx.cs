@@ -19,33 +19,34 @@ public partial class Modules_HTMLModule : ModuleControlBaseClass
     {
         string path = HttpContext.Current.Request.ApplicationPath;
         TextEditor.scriptPath = path + "/Editor/scripts";
-        
-    }
-
-    protected void Page_PreRender(object sender, EventArgs e)
-    {
+        SaveButton.Attributes.Add("onClick", "getSearchHtml();");        
         updateViews();
+     
     }
 
     private void updateViews()
     {
-        HTMLModule _htmlmodule = HTMLModuleData.LoadHTMLModuleData(this.ModuleId);
+        HTMLModule htmlmodule = HTMLModuleData.LoadHTMLModuleData(this._moduleid);
         if (ViewMode == ViewMode.Edit)
         {
             ControlMultiView.SetActiveView(EditView);
-            TextEditor.Text = _htmlmodule.HtmlText;
+            TextEditor.Text = htmlmodule.HtmlText;
         }
         else
         {
-            ControlMultiView.SetActiveView(ReadView);
-            HtmlContent.Text = _htmlmodule.HtmlText;
+            ControlMultiView.SetActiveView(ReadView);            
+            HtmlContent.Text = htmlmodule.HtmlText;
+            DateLiteral.Text = "Created on: " + htmlmodule.CreatedDate.ToShortDateString() + " by " + htmlmodule.CreatedByUser;
         }
     }
     protected void SaveButton_Click(object sender, EventArgs e)
     {
         htmlmodule.ModuleId = this.ModuleId;
         htmlmodule.HtmlText = TextEditor.Text;
-        htmlmodule.CreatedDate = DateTime.Now;      
+        htmlmodule.SearchText = searchtext.Value;
+        htmlmodule.CreatedDate = DateTime.Now;
+        HTMLModuleData.UpdateHTMLModule(htmlmodule);
+        Response.Redirect(Request.RawUrl);
 
     }
     protected void CancelButton_Click(object sender, EventArgs e)
