@@ -13,12 +13,12 @@ using System.Collections;
 namespace MyWebSite.Modules
 {
     public class ModuleData : Module
-    {
-        static SqlConnection connection = ConnectionManager.GetDatabaseConnection();
+    {        
 
         public static Module NewModule(Module module)
         {
-            int rowsaffected = 0;            
+            SqlConnection connection = ConnectionManager.GetDatabaseConnection();
+            int id = 0;            
             string procedure = "NewModule";
             SqlCommand cmd = new SqlCommand(procedure, connection);
             cmd.CommandType = CommandType.StoredProcedure;
@@ -30,7 +30,8 @@ namespace MyWebSite.Modules
             cmd.Parameters.Add("@PanelName", SqlDbType.VarChar, 10).Value = module.PanelName;
             cmd.Parameters.Add("@ModuleOrder", SqlDbType.Int).Value = module.ModuleOrder;
 
-            rowsaffected = cmd.ExecuteNonQuery();
+            id = int.Parse(cmd.ExecuteScalar().ToString());
+            module.ModuleId = id;
             connection.Close();
             return module;
             
@@ -38,6 +39,7 @@ namespace MyWebSite.Modules
 
         public static Module LoadModuleData(int moduleid)
         {
+            SqlConnection connection = ConnectionManager.GetDatabaseConnection();
             Module module = new Module();
             string select = string.Format("SELECT * FROM modules WHERE ModuleId='{0}'", moduleid.ToString());
             SqlCommand cmd = new SqlCommand(select, connection);
@@ -61,6 +63,7 @@ namespace MyWebSite.Modules
 
         public static void UpdateModule(Module module)
         {
+            SqlConnection connection = ConnectionManager.GetDatabaseConnection();
             int rowsaffected = 0;
             string procedure = "UpdateModule";
             SqlCommand cmd = new SqlCommand(procedure, connection);
@@ -80,6 +83,7 @@ namespace MyWebSite.Modules
 
         public static ArrayList GetAllModules(string pageid)
         {
+            SqlConnection connection = ConnectionManager.GetDatabaseConnection();
             ArrayList modulelist = new ArrayList();            
             string select = string.Format("SELECT * FROM modules WHERE PageId='{0}' ORDER BY ModuleOrder", pageid);
             SqlCommand cmd = new SqlCommand(select, connection);
@@ -99,6 +103,7 @@ namespace MyWebSite.Modules
 
         public static string GetModuleType(int moduledefid)
         {
+            SqlConnection connection = ConnectionManager.GetDatabaseConnection();
             string select = string.Format("SELECT * FROM ModuleDefinition WHERE ModuleDefinitionId='{0}'", moduledefid.ToString());
             SqlCommand cmd = new SqlCommand(select, connection);
             cmd.CommandType = CommandType.Text;

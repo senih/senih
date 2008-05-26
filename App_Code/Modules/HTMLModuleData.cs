@@ -12,11 +12,10 @@ using System.Web.UI.HtmlControls;
 namespace MyWebSite.Modules
 {
     public class HTMLModuleData : Module
-    {
-        static SqlConnection connection = ConnectionManager.GetDatabaseConnection();
-
+    {        
         public static HTMLModule NewHTMLModule(HTMLModule module)
-        {            
+        {
+            SqlConnection connection = ConnectionManager.GetDatabaseConnection();
             int rowsaffected = 0;
             string procedure = "NewHTMLModule";
             SqlCommand cmd = new SqlCommand(procedure, connection);
@@ -35,6 +34,7 @@ namespace MyWebSite.Modules
 
         public static void UpdateHTMLModule(HTMLModule module)
         {
+            SqlConnection connection = ConnectionManager.GetDatabaseConnection();
             int rowsaffected = 0;
             string procedure = "UpdateHTMLModule";
             SqlCommand cmd = new SqlCommand(procedure, connection);
@@ -51,6 +51,7 @@ namespace MyWebSite.Modules
 
         public static HTMLModule LoadHTMLModuleData(int moduleid)
         {
+            SqlConnection connection = ConnectionManager.GetDatabaseConnection();
             HTMLModule module = new HTMLModule();
             string select = string.Format("SELECT * FROM HTMLTextModule WHERE ModuleId='{0}'", moduleid);
             SqlCommand cmd = new SqlCommand(select, connection);

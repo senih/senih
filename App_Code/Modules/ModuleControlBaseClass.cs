@@ -13,6 +13,7 @@ namespace MyWebSite.Modules
     public class ModuleControlBaseClass : UserControl
     {
         protected int _moduleid;
+        protected ViewMode _view;
 
         public int ModuleId
         {
@@ -22,18 +23,8 @@ namespace MyWebSite.Modules
 
         public ViewMode ViewMode
         {
-            get
-            {
-                object o = ViewState["ViewMode"];
-                if (o != null)
-                    return (ViewMode)o;
-                else
-                    return ViewMode.ReadOnly;
-            }
-            set
-            {
-                ViewState["ViewMode"] = value;
-            }
+            get { return _view; }
+            set { _view = value; }
         }
 
         public ModuleControlBaseClass()
@@ -42,7 +33,7 @@ namespace MyWebSite.Modules
 
         public ModuleControlBaseClass(int moduleid)
         {
-            ModuleId = moduleid;
+            ModuleId = moduleid;            
         }
 
     }
