@@ -81,6 +81,17 @@ namespace MyWebSite.Modules
             connection.Close();
         }
 
+        public static void DeleteModule(int moduleid)
+        {            
+            SqlConnection connection = ConnectionManager.GetDatabaseConnection();
+            string delete = string.Format("DELETE FROM modules WHERE ModuleId='{0}'", moduleid.ToString());
+            SqlCommand cmd = new SqlCommand(delete, connection);
+            cmd.CommandType = CommandType.Text;
+            int rowsaffected = cmd.ExecuteNonQuery();
+            connection.Close();
+        }
+
+
         public static ArrayList GetAllModules(string pageid)
         {
             SqlConnection connection = ConnectionManager.GetDatabaseConnection();

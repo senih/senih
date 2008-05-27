@@ -70,5 +70,15 @@ namespace MyWebSite.Modules
             connection.Close();
             return module;
         }
+
+        public static void DeleteHTMLModule(int moduleid)
+        {
+            SqlConnection connection = ConnectionManager.GetDatabaseConnection();
+            string delete = string.Format("DELETE FROM HTMLTextModule WHERE ModuleId='{0}'", moduleid.ToString());
+            SqlCommand cmd = new SqlCommand(delete, connection);
+            cmd.CommandType = CommandType.Text;
+            int rowsaffected = cmd.ExecuteNonQuery();
+            connection.Close();
+        }
     }
 }

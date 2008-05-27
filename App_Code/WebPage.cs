@@ -19,6 +19,7 @@ namespace MyWebSite
         private string _virtualPath;
         private string _accessRole;
         private bool _visible;
+        private string _editRole;
 
         public int PageId
         {
@@ -54,6 +55,12 @@ namespace MyWebSite
         {
             get { return _visible; }
             set { _visible = value; }
+        }
+
+        public string EditRole
+        {
+            get { return _editRole; }
+            set { _editRole = value; }
         }
           
         public WebPage()

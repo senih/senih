@@ -4,7 +4,7 @@
         <RoleGroups>
             <asp:RoleGroup Roles="administrators">
                 <ContentTemplate>
-                    <asp:LoginStatus ID="LoginStatus1" runat="server" LogoutAction="Redirect" LogoutPageUrl="~/Login.aspx" />
+                    <asp:LoginStatus ID="LoginStatus1" runat="server" LogoutAction="Redirect" LogoutPageUrl="~/Administration/Login.aspx" />
                     <br />
                     <asp:GridView ID="UsersGridView" runat="server" AutoGenerateColumns="false" AllowSorting="true" AllowPaging="true" DataKeyNames="UserName" OnSelectedIndexChanged="UsersGridView_SelectedIndexChanged">
                         <Columns>

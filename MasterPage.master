@@ -8,13 +8,6 @@
 
 </head>
 <body>
-    <script type="text/javascript">
-        function getSearchHtml(){
-
-		document.getElementById("searchtext").value=oUtil.obj.getTextBody();
-
-		}
-    </script>
     <form id="form1" runat="server">
     <div>        
         <asp:contentplaceholder id="mainContent" runat="server">
