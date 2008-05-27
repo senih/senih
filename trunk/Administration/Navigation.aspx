@@ -87,12 +87,21 @@
                             </td>
                         </tr>
                         <tr>
-                            <td>Roles
-                            </td>
                             <td>
-                                <asp:DropDownList ID="RolesDropDownList" runat="server">
+                                Acces Roles</td>
+                            <td>
+                                <asp:DropDownList ID="AccessRolesDropDownList" runat="server">
                                 </asp:DropDownList>
                             </td>
+                            <td>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Edit Roles</td>
+                            <td>
+                                <asp:DropDownList ID="EditRolesDropDownList" runat="server">
+                                </asp:DropDownList></td>
                             <td>
                             </td>
                         </tr>

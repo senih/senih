@@ -8,12 +8,15 @@ using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Web.UI.HtmlControls;
 
+
 namespace MyWebSite.Modules
 {
+          
     public class ModuleControlBaseClass : UserControl
-    {
-        protected int _moduleid;
+    {        
+        protected int _moduleid;        
         protected ViewMode _view;
+        protected bool _adminView;
 
         public int ModuleId
         {
@@ -27,13 +30,19 @@ namespace MyWebSite.Modules
             set { _view = value; }
         }
 
+        public bool AdminView
+        {
+            get { return _adminView; }
+            set { _adminView = value; }
+        }
+
         public ModuleControlBaseClass()
         {
         }
 
         public ModuleControlBaseClass(int moduleid)
         {
-            ModuleId = moduleid;            
+            ModuleId = moduleid;
         }
 
     }

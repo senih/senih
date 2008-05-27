@@ -10,6 +10,7 @@ using System.Web.UI.WebControls.WebParts;
 using System.Web.UI.HtmlControls;
 using MyWebSite;
 using MyWebSite.Modules;
+using System.IO;
 
 public partial class _Default : PageBaseClass
 {
@@ -21,12 +22,11 @@ public partial class _Default : PageBaseClass
     {   
         if (!IsPostBack)
         {
-            if (User.IsInRole("administrators"))
+            if (((User.Identity.IsAuthenticated) && (User.IsInRole(_page.EditRole))) || User.IsInRole("administrators"))
                 AddModulePanel.Visible = true;
-            else AddModulePanel.Visible = false;
-            LeftArea.Controls.Add(menu);            
+            else AddModulePanel.Visible = false;            
         }
-
+        LeftArea.Controls.Add(menu);
     }
 
     protected void Page_PreLoad(object sender, EventArgs e)
@@ -36,8 +36,13 @@ public partial class _Default : PageBaseClass
         
     protected void LoadPageContent()
     {
+        if (!(File.Exists(HttpContext.Current.Server.MapPath("~/Web.sitemap"))))
+        {
+            SitemapEditor editor = new SitemapEditor();
+            editor.Save();
+        }
         menu.DataSource = source;
-        menu.DataBind();        
+        menu.DataBind();
         string temp = Context.Items["VirtualPage"].ToString();
         string pageid = WebPageData.GetWebPageId(temp);
         _page = WebPageData.LoadPageData(pageid);
@@ -58,11 +63,16 @@ public partial class _Default : PageBaseClass
         {
             Module module = ModuleData.LoadModuleData(moduleid);            
             string filename = ModuleData.GetModuleType(module.ModuleDefinitionId);
-            ModuleControlBaseClass control = new ModuleControlBaseClass(module.ModuleId);
-            int temp1 = control.ModuleId;
+            ModuleControlBaseClass control = new ModuleControlBaseClass(module.ModuleId);            
             control = (ModuleControlBaseClass)LoadControl(filename);
-            control.ModuleId = temp1;
-            control.ViewMode = ViewMode.Edit;
+            control.ModuleId = module.ModuleId;
+            
+            if ((User.IsInRole(_page.EditRole)) || User.IsInRole("administrators"))
+                control.AdminView = true;
+            else control.AdminView = false;
+
+            if (!IsPostBack)
+                control.ViewMode = ViewMode.ReadOnly;
                                                 
             if (module.PanelName == "CentreArea")
                 CentreArea.Controls.Add(control);
@@ -90,6 +100,7 @@ public partial class _Default : PageBaseClass
         Module module = new Module();
         module.ModuleTitle = ModuleDropDownList.SelectedItem.Text;
         module.EditRoles = "users";
+        //TODO Dodava samo na prva strana
         module.PageId = _page.PageId;
         module.ModuleDefinitionId = int.Parse(ModuleDropDownList.SelectedItem.Value);        
         module.PanelName = "CentreArea";

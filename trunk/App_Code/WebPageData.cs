@@ -30,6 +30,7 @@ namespace MyWebSite
             cmd.Parameters.Add("@VirtualPath", SqlDbType.VarChar, 50).Value = "";
             cmd.Parameters.Add("@AccessRole", SqlDbType.VarChar, 20).Value = "Anonymous";
             cmd.Parameters.Add("@Visible", SqlDbType.Bit).Value = true;
+            cmd.Parameters.Add("@EditRole", SqlDbType.VarChar, 20).Value = "administrators";
 
             string pageid = cmd.ExecuteScalar().ToString();
             connection.Close();            
@@ -62,6 +63,7 @@ namespace MyWebSite
             cmd.Parameters.Add("@VirtualPath", SqlDbType.VarChar, 50).Value = page.VirtualPath;
             cmd.Parameters.Add("@AccessRole", SqlDbType.VarChar, 20).Value = page.AccessRole;
             cmd.Parameters.Add("@Visible", SqlDbType.Bit).Value = page.Visible;
+            cmd.Parameters.Add("@EditRole", SqlDbType.VarChar, 20).Value = page.EditRole;
 
             rowsaffected = cmd.ExecuteNonQuery();
             connection.Close();
@@ -84,6 +86,7 @@ namespace MyWebSite
             page.VirtualPath = reader.GetString(3);
             page.AccessRole = reader.GetString(4);
             page.Visible = reader.GetBoolean(5);
+            page.EditRole = reader.GetString(6);
 
             connection.Close();
             return page;

@@ -2,12 +2,6 @@
 <siteMap xmlns="http://schemas.microsoft.com/AspNet/SiteMap-File-1.0">
   <siteMapNode title="Site Map">
     <siteMapNode url="~/default.aspx" title="Home Page" pageId="1" visible="True" />
-    <siteMapNode title="Test" url="~/testpage.aspx" pageId="25" visible="True">
-      <siteMapNode title="Test2" url="~/testpage1.aspx" pageId="26" visible="True">
-      </siteMapNode>
-      <siteMapNode title="New Page" url="~/default1.aspx" pageId="27" visible="True">
-        <siteMapNode title="New Page" url="~/default28.aspx" pageId="28" visible="True" />
-      </siteMapNode>
-    </siteMapNode>
+    <siteMapNode title="Page" url="~/page.aspx" pageId="2" visible="True" />
   </siteMapNode>
 </siteMap>

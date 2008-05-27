@@ -82,7 +82,8 @@ public partial class Administration_Navigation : PageBaseClass
         TextBox TitleTB = (TextBox)LoginView1.FindControl("TitleTextBox");
         TextBox NavigationTB = (TextBox)LoginView1.FindControl("NavigationTextBox");
         TextBox VirtualPathTB = (TextBox)LoginView1.FindControl("VirtualPathTextBox");
-        DropDownList RolesDDL = (DropDownList)LoginView1.FindControl("RolesDropDownList");
+        DropDownList AccessRolesDDL = (DropDownList)LoginView1.FindControl("AccessRolesDropDownList");
+        DropDownList EditRolesDDL = (DropDownList)LoginView1.FindControl("EditRolesDropDownList");
         CheckBox VisibleCB = (CheckBox)LoginView1.FindControl("VisibleCheckBox");
 
         string temp = pagesTV.SelectedValue;
@@ -93,11 +94,13 @@ public partial class Administration_Navigation : PageBaseClass
         NavigationTB.Text = page.NavigationName;
         VirtualPathTB.Text = page.VirtualPath;
         VisibleCB.Checked = page.Visible;
-        RolesDDL.DataSource = Roles.GetAllRoles();
-        RolesDDL.DataBind();
-        RolesDDL.Items.Insert(0, new ListItem("Anonymous", "Anonymous"));
-        RolesDDL.SelectedValue = page.AccessRole;
-
+        AccessRolesDDL.DataSource = Roles.GetAllRoles();
+        AccessRolesDDL.DataBind();
+        AccessRolesDDL.Items.Insert(0, new ListItem("Anonymous", "Anonymous"));
+        AccessRolesDDL.SelectedValue = page.AccessRole;
+        EditRolesDDL.DataSource = Roles.GetAllRoles();
+        EditRolesDDL.DataBind();
+        EditRolesDDL.SelectedValue = page.EditRole;
 
     }
     protected void UpdatePageBtn_Click(object sender, EventArgs e)
@@ -109,7 +112,8 @@ public partial class Administration_Navigation : PageBaseClass
         TextBox TitleTB = (TextBox)LoginView1.FindControl("TitleTextBox");
         TextBox NavigationTB = (TextBox)LoginView1.FindControl("NavigationTextBox");
         TextBox VirtualPathTB = (TextBox)LoginView1.FindControl("VirtualPathTextBox");
-        DropDownList RolesDDL = (DropDownList)LoginView1.FindControl("RolesDropDownList");
+        DropDownList AccessRolesDDL = (DropDownList)LoginView1.FindControl("AccessRolesDropDownList");
+        DropDownList EditRolesDDL = (DropDownList)LoginView1.FindControl("EditRolesDropDownList");
         CheckBox VisibleCB = (CheckBox)LoginView1.FindControl("VisibleCheckBox");
 
         string temp = pagesTV.SelectedValue;
@@ -127,7 +131,8 @@ public partial class Administration_Navigation : PageBaseClass
         {
             page.VirtualPath = string.Format("~/default{0}.aspx", pageid);
         }
-        page.AccessRole = RolesDDL.SelectedValue;
+        page.AccessRole = AccessRolesDDL.SelectedValue;
+        page.EditRole = EditRolesDDL.SelectedValue;
         page.Visible = VisibleCB.Checked;
 
         WebPageData.UpdatePage(page);

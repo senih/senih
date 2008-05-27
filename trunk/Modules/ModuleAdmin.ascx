@@ -8,8 +8,8 @@
     </tr>
     <tr>
         <td colspan="2" style="width: 234px">
-            <asp:Button ID="Button2" runat="server" Text="Delete Module" />
-            <asp:Button ID="Button1" runat="server" Text="Edit Module" /></td>
+            <asp:Button ID="DeleteButton" runat="server" Text="Delete Module" OnClick="DeleteButton_Click" />
+            <asp:Button ID="EditButton" runat="server" Text="Edit Module" OnClick="EditButton_Click" /></td>
         <td>
             <asp:ImageButton ID="ImageButton1" runat="server" ImageUrl="~/Administration/Images/up_btn.gif" /></td>
     </tr>
