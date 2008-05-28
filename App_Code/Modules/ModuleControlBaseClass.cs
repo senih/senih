@@ -17,6 +17,7 @@ namespace MyWebSite.Modules
         protected int _moduleid;        
         protected ViewMode _view;
         protected bool _adminView;
+        protected string _panel;
 
         public int ModuleId
         {
@@ -34,6 +35,12 @@ namespace MyWebSite.Modules
         {
             get { return _adminView; }
             set { _adminView = value; }
+        }
+
+        public string Panel
+        {
+            get { return _panel; }
+            set { _panel = value; }
         }
 
         public ModuleControlBaseClass()

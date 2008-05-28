@@ -30,8 +30,8 @@ public partial class Modules_HTMLModule : ModuleControlBaseClass
 
     protected void ModuleAdmin_Edit(object sender, EventArgs e)
     {
-        ViewMode = ModuleAdmin.ViewMode;
-        updateViews();
+        ViewMode = ModuleAdmin.ViewMode;        
+        updateViews();        
     }
 
     protected void ModuleAdmin_DeleteModule(object sender, EventArgs e)
@@ -39,6 +39,27 @@ public partial class Modules_HTMLModule : ModuleControlBaseClass
         HTMLModuleData.DeleteHTMLModule(this.ModuleId);
         ModuleData.DeleteModule(this.ModuleId);
         Response.Redirect(Request.RawUrl);
+    }
+
+    protected void ModuleAdmin_MoveToPanel(object sender, EventArgs e)
+    {
+        //Move module to panel
+
+        string panel = ModuleAdmin.Panel;
+        Module module = ModuleData.LoadModuleData(ModuleId);
+        module.PanelName = panel;
+        ModuleData.UpdateModule(module);
+        Response.Redirect(Request.RawUrl);
+    }
+
+    protected void ModuleAdmin_ModuleUp(object sender, EventArgs e)
+    {
+        
+    }
+
+    protected void ModuleAdmin_ModuleDown(object sender, EventArgs e)
+    {
+        //Move module Down
     }
 
     private void updateViews()
@@ -56,7 +77,7 @@ public partial class Modules_HTMLModule : ModuleControlBaseClass
             ControlMultiView.SetActiveView(ReadView);
             TitleLiteral.Text = module.ModuleTitle;
             HtmlContent.Text = htmlmodule.HtmlText;
-            DateLiteral.Text = "Created on: " + htmlmodule.CreatedDate.ToShortDateString() + " by " + htmlmodule.CreatedByUser;
+            DateLiteral.Text = "Created on: <b>" + htmlmodule.CreatedDate.ToShortDateString() + "</b> by " + "<b>" + htmlmodule.CreatedByUser + "</b>";
         }
     }
     protected void SaveButton_Click(object sender, EventArgs e)
@@ -74,7 +95,7 @@ public partial class Modules_HTMLModule : ModuleControlBaseClass
     }
     protected void CancelButton_Click(object sender, EventArgs e)
     {
-        ViewMode = ViewMode.ReadOnly;
+        Response.Redirect(Request.RawUrl);
     }
 
     protected static string RemoveHTML(string in_HTML)

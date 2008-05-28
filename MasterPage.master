@@ -1,5 +1,5 @@
 <%@ Master Language="C#" AutoEventWireup="true" CodeFile="MasterPage.master.cs" Inherits="MasterPage" %>
-
+<%@ Register TagPrefix="cc" Namespace="MyWebSite" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml" >
@@ -8,11 +8,11 @@
 
 </head>
 <body>
-    <form id="form1" runat="server">
+    <cc:ActionLessForm id="form1" runat="server">
     <div>        
         <asp:contentplaceholder id="mainContent" runat="server">
         </asp:contentplaceholder>
     </div>
-    </form>
+    </cc:ActionLessForm>
 </body>
 </html>

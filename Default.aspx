@@ -1,11 +1,9 @@
 <%@ Page Language="C#" MasterPageFile="~/MasterPage.master" ValidateRequest="false" AutoEventWireup="true" CodeFile="Default.aspx.cs" Inherits="_Default" Title="Untitled Page" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="mainContent" Runat="Server">
-    <asp:PlaceHolder ID="LeftArea" runat="server"></asp:PlaceHolder>
-    <asp:PlaceHolder ID="CentreArea" runat="server">
-
-    </asp:PlaceHolder>
-    <asp:PlaceHolder ID="RightArea" runat="server"></asp:PlaceHolder>
+    <div style="width:300px; float:left"><asp:PlaceHolder ID="LeftArea" runat="server"></asp:PlaceHolder></div>
+    <div style="width:600px; float:left">
+        <asp:PlaceHolder ID="CenterArea" runat="server"></asp:PlaceHolder>
             <asp:Panel ID="AddModulePanel" runat="server">
         <table>
             <tr>
@@ -18,5 +16,7 @@
             </tr>
         </table>
     </asp:Panel>
+    </div>
+    <div style="width:300px; float:left"><asp:PlaceHolder ID="RightArea" runat="server"></asp:PlaceHolder></div>
 </asp:Content>
 

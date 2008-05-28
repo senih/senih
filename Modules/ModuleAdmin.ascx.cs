@@ -12,8 +12,12 @@ using MyWebSite.Modules;
 
 public partial class Modules_ModuleAdmin : ModuleControlBaseClass
 {
+
     public event EventHandler Edit;
     public event EventHandler DeleteModule;
+    public event EventHandler MoveToPanel;
+    public event EventHandler ModuleUp;
+    public event EventHandler ModuleDown;
     
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -41,5 +45,22 @@ public partial class Modules_ModuleAdmin : ModuleControlBaseClass
     {
         if (DeleteModule != null)
             DeleteModule(this, new EventArgs());
+    }
+    protected void PanelButton_Click(object sender, EventArgs e)
+    {
+        Panel = PanelDropDownList.SelectedItem.Value;
+        if (MoveToPanel != null)
+            MoveToPanel(this, new EventArgs());
+    }
+
+    protected void ModuleUpButton_Click(object sender, ImageClickEventArgs e)
+    {
+        if (ModuleUp != null)
+            ModuleUp(this, new EventArgs());
+    }
+    protected void ModuleDownButton_Click(object sender, ImageClickEventArgs e)
+    {
+        if (ModuleDown != null)
+            ModuleDown(this, new EventArgs());
     }
 }

@@ -3,5 +3,7 @@
   <siteMapNode title="Site Map">
     <siteMapNode url="~/default.aspx" title="Home Page" pageId="1" visible="True" />
     <siteMapNode title="Page" url="~/page.aspx" pageId="2" visible="True" />
+    <siteMapNode title="Page1" url="~/default3.aspx" pageId="3" visible="True" />
+    <siteMapNode title="Page2" url="~/default4.aspx" pageId="4" visible="True" />
   </siteMapNode>
 </siteMap>
