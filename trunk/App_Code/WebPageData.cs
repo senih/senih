@@ -94,6 +94,7 @@ namespace MyWebSite
 
         public static string GetWebPageId(string temp)
         {
+            string pageId;
             int position = temp.LastIndexOf("/");
             string url = "~" + temp.Substring(position);
             SqlConnection connection = ConnectionManager.GetDatabaseConnection();
@@ -101,9 +102,18 @@ namespace MyWebSite
             SqlCommand cmd = new SqlCommand(procedure, connection);
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.Add("@VirtualPath", SqlDbType.VarChar, 50).Value = url;
-            string pageId = cmd.ExecuteScalar().ToString();
+            try
+            {
+                pageId = cmd.ExecuteScalar().ToString();
+            }
+            catch (System.NullReferenceException err)
+            {
+                string ErrorMsg = err.Message;
+                pageId = "none";
+            }
             connection.Close();
             return pageId;
+            
         }
 
         public static void UpdateVirtualPath(string pageId)
@@ -137,6 +147,7 @@ namespace MyWebSite
         {
             Regex objAlphaNumericPattern = new Regex("[^a-zA-Z0-9 ]");
             return !objAlphaNumericPattern.IsMatch(strToCheck);
-        } 
+        }
+        
     }
 }

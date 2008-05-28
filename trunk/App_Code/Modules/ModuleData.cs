@@ -112,6 +112,10 @@ namespace MyWebSite.Modules
             return modulelist;
         }
 
+        //public static ArrayList GetModulesInPanel(string panel)
+        //{
+        //}
+
         public static string GetModuleType(int moduledefid)
         {
             SqlConnection connection = ConnectionManager.GetDatabaseConnection();
@@ -126,6 +130,6 @@ namespace MyWebSite.Modules
             connection.Close();
             return filename;
         }
-                
+
     }
 }

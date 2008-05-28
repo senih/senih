@@ -14,6 +14,8 @@ using System.IO;
 
 public partial class _Default : PageBaseClass
 {
+    protected ArrayList modulelist;
+    protected string url;
     private WebPage _page;
     private Menu menu = new Menu();
     SiteMapDataSource source = new SiteMapDataSource();
@@ -26,12 +28,12 @@ public partial class _Default : PageBaseClass
                 AddModulePanel.Visible = true;
             else AddModulePanel.Visible = false;            
         }
-        LeftArea.Controls.Add(menu);
+        
     }
 
-    protected void Page_PreLoad(object sender, EventArgs e)
+    protected void Page_Init(object sender, EventArgs e)
     {        
-        LoadPageContent();
+      LoadPageContent();
     }
         
     protected void LoadPageContent()
@@ -53,12 +55,14 @@ public partial class _Default : PageBaseClass
             Title = website.WebSiteTitle;
 
         LeftArea.Controls.Clear();
-        CentreArea.Controls.Clear();
+        CenterArea.Controls.Clear();
         RightArea.Controls.Clear();
+
+        LeftArea.Controls.Add(menu);
                 
         // Load all modules
 
-        ArrayList modulelist = ModuleData.GetAllModules(pageid);
+        modulelist = ModuleData.GetAllModules(pageid);
         foreach (int moduleid in modulelist)
         {
             Module module = ModuleData.LoadModuleData(moduleid);            
@@ -67,15 +71,15 @@ public partial class _Default : PageBaseClass
             control = (ModuleControlBaseClass)LoadControl(filename);
             control.ModuleId = module.ModuleId;
             
-            if ((User.IsInRole(_page.EditRole)) || User.IsInRole("administrators"))
+            if ((User.IsInRole(module.EditRoles)) || User.IsInRole("administrators"))
                 control.AdminView = true;
             else control.AdminView = false;
 
             if (!IsPostBack)
                 control.ViewMode = ViewMode.ReadOnly;
                                                 
-            if (module.PanelName == "CentreArea")
-                CentreArea.Controls.Add(control);
+            if (module.PanelName == "CenterArea")
+                CenterArea.Controls.Add(control);
             if (module.PanelName == "LeftArea")
                 LeftArea.Controls.Add(control);
             if (module.PanelName == "RightArea")
@@ -91,8 +95,7 @@ public partial class _Default : PageBaseClass
         description.Attributes.Add("name", "description");
         description.Attributes.Add("content", website.Description);
         Header.Controls.Add(description);
-
-
+        
     }
 
     protected void AddModuleButton_Click(object sender, EventArgs e)
@@ -100,11 +103,11 @@ public partial class _Default : PageBaseClass
         Module module = new Module();
         module.ModuleTitle = ModuleDropDownList.SelectedItem.Text;
         module.EditRoles = "users";
-        //TODO Dodava samo na prva strana
+        url = Request.UrlReferrer.ToString();
         module.PageId = _page.PageId;
         module.ModuleDefinitionId = int.Parse(ModuleDropDownList.SelectedItem.Value);        
-        module.PanelName = "CentreArea";
-        module.ModuleOrder = CentreArea.Controls.Count + 1;
+        module.PanelName = "CenterArea";
+        module.ModuleOrder = SetModuleOrder(modulelist);
         Module newmodule = ModuleData.NewModule(module);
 
         if (module.ModuleTitle == "HTML")
@@ -116,5 +119,21 @@ public partial class _Default : PageBaseClass
             newhtmlmodule = HTMLModuleData.NewHTMLModule(newhtmlmodule);
         }
         Response.Redirect(Request.RawUrl);
+    }
+
+    protected int SetModuleOrder(ArrayList list)
+    {
+        int order = 0;
+        foreach (int moduleid in list)
+        {
+            Module module = ModuleData.LoadModuleData(moduleid);
+            order = module.ModuleOrder;
+        }
+        return order + 1;
+    }
+
+    public static void MoveModuleUp(int moduleid)
+    {
+
     }
 }
