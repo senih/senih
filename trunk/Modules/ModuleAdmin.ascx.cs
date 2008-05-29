@@ -16,12 +16,10 @@ public partial class Modules_ModuleAdmin : ModuleControlBaseClass
     public event EventHandler Edit;
     public event EventHandler DeleteModule;
     public event EventHandler MoveToPanel;
-    public event EventHandler ModuleUp;
-    public event EventHandler ModuleDown;
     
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        ModuleNameLabel.Text = ModuleData.GetModuleName(ModuleId) + " Module";
     }
 
     protected void EditButton_Click(object sender, EventArgs e)
@@ -55,12 +53,12 @@ public partial class Modules_ModuleAdmin : ModuleControlBaseClass
 
     protected void ModuleUpButton_Click(object sender, ImageClickEventArgs e)
     {
-        if (ModuleUp != null)
-            ModuleUp(this, new EventArgs());
+        ModuleData.MoveModuleUp(ModuleId);
+        Response.Redirect(Request.RawUrl);
     }
     protected void ModuleDownButton_Click(object sender, ImageClickEventArgs e)
-    {
-        if (ModuleDown != null)
-            ModuleDown(this, new EventArgs());
+    {        
+        ModuleData.MoveModuleDown(ModuleId);
+        Response.Redirect(Request.RawUrl);
     }
 }

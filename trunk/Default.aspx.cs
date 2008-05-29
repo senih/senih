@@ -132,8 +132,5 @@ public partial class _Default : PageBaseClass
         return order + 1;
     }
 
-    public static void MoveModuleUp(int moduleid)
-    {
 
-    }
 }

@@ -34,6 +34,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AcctionlessForm.cs" />
     <Compile Include="Handlers\ContentManagmentHandler.cs">
       <SubType>Code</SubType>
     </Compile>

@@ -1,6 +1,6 @@
 using System.Web.UI.HtmlControls;
 
-namespace MyWebSite
+namespace Handlers
 {
     public class ActionlessForm : HtmlForm
     {
@@ -8,7 +8,7 @@ namespace MyWebSite
         {
             writer.WriteAttribute("name", this.Name);
             writer.WriteAttribute("method", this.Method);
-            Attributes.Render(writer);            
+            Attributes.Render(writer);
         }
     }
 }

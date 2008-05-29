@@ -25,6 +25,7 @@ public partial class Modules_HTMLModule : ModuleControlBaseClass
         else ModuleAdmin.Visible = false;
         if (!IsPostBack)
             updateViews();
+        ModuleAdmin.ModuleId = this.ModuleId;
      
     }
 
@@ -52,16 +53,6 @@ public partial class Modules_HTMLModule : ModuleControlBaseClass
         Response.Redirect(Request.RawUrl);
     }
 
-    protected void ModuleAdmin_ModuleUp(object sender, EventArgs e)
-    {
-        
-    }
-
-    protected void ModuleAdmin_ModuleDown(object sender, EventArgs e)
-    {
-        //Move module Down
-    }
-
     private void updateViews()
     {        
         HTMLModule htmlmodule = HTMLModuleData.LoadHTMLModuleData(this._moduleid);
@@ -75,9 +66,9 @@ public partial class Modules_HTMLModule : ModuleControlBaseClass
         else
         {
             ControlMultiView.SetActiveView(ReadView);
-            TitleLiteral.Text = module.ModuleTitle;
+            TitleLiteral.Text = "<h3>" + module.ModuleTitle + "</h3>";
             HtmlContent.Text = htmlmodule.HtmlText;
-            DateLiteral.Text = "Created on: <b>" + htmlmodule.CreatedDate.ToShortDateString() + "</b> by " + "<b>" + htmlmodule.CreatedByUser + "</b>";
+            DateLiteral.Text = "<br /> Created on: <b>" + htmlmodule.CreatedDate.ToShortDateString() + "</b> by " + "<b>" + htmlmodule.CreatedByUser + "</b><br />";
         }
     }
     protected void SaveButton_Click(object sender, EventArgs e)

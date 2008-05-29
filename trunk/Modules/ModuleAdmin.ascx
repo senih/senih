@@ -1,5 +1,7 @@
 <%@ Control Language="C#" AutoEventWireup="true" CodeFile="ModuleAdmin.ascx.cs" Inherits="Modules_ModuleAdmin" %>
-<table width="100%">
+
+<div align="center">
+<table>
     <tr>
         <td colspan="2" style="width: 234px">
             <asp:Label ID="ModuleNameLabel" runat="server"></asp:Label></td>
@@ -25,4 +27,4 @@
             <asp:ImageButton ID="ModuleDownButton" runat="server" ImageUrl="~/Administration/Images/down_btn.gif" OnClick="ModuleDownButton_Click" /></td>
     </tr>
 </table>
-<hr />
+</div>
