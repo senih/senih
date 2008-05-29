@@ -1,7 +1,7 @@
 <%@ Page Language="C#" MasterPageFile="~/MasterPage.master" ValidateRequest="false" AutoEventWireup="true" CodeFile="Default.aspx.cs" Inherits="_Default" Title="Untitled Page" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="mainContent" Runat="Server">
-    <div style="width:300px; float:left"><asp:PlaceHolder ID="LeftArea" runat="server"></asp:PlaceHolder></div>
+    <div style="width:300px; padding:20px; float:left"><asp:PlaceHolder ID="LeftArea" runat="server"></asp:PlaceHolder></div>
     <div style="width:600px; float:left">
         <asp:PlaceHolder ID="CenterArea" runat="server"></asp:PlaceHolder>
             <asp:Panel ID="AddModulePanel" runat="server">

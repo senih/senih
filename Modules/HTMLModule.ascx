@@ -2,7 +2,7 @@
 <%@ Register Src="ModuleAdmin.ascx" TagName="ModuleAdmin" TagPrefix="uc1" %>
 <%@ Register Assembly="WYSIWYGEditor" Namespace="InnovaStudio" TagPrefix="editor" %>
 
-<uc1:ModuleAdmin ID="ModuleAdmin" OnDeleteModule="ModuleAdmin_DeleteModule" OnEdit="ModuleAdmin_Edit" OnMoveToPanel="ModuleAdmin_MoveToPanel" OnModuleUp="ModuleAdmin_ModuleUp" OnModuleDown="ModuleAdmin_ModuleDown" runat="server" />
+<uc1:ModuleAdmin ID="ModuleAdmin" OnDeleteModule="ModuleAdmin_DeleteModule" OnEdit="ModuleAdmin_Edit" OnMoveToPanel="ModuleAdmin_MoveToPanel" runat="server" />
 <asp:MultiView ID="ControlMultiView" runat="server">
     <asp:View ID="EditView" runat="server">
         <table>
@@ -26,4 +26,3 @@
         <asp:Literal ID="DateLiteral" runat="server"></asp:Literal><br />
     </asp:View>
 </asp:MultiView>
-<hr />

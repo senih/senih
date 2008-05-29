@@ -112,9 +112,24 @@ namespace MyWebSite.Modules
             return modulelist;
         }
 
-        //public static ArrayList GetModulesInPanel(string panel)
-        //{
-        //}
+        public static ArrayList GetModulesInPanel(int pageid, string panel)
+        {
+            SqlConnection connection = ConnectionManager.GetDatabaseConnection();
+            ArrayList modulelist = new ArrayList();
+            string select = string.Format("SELECT * FROM modules WHERE PageId='{0}' AND PanelName='{1}' ORDER BY ModuleOrder", pageid.ToString(), panel);
+            SqlCommand cmd = new SqlCommand(select, connection);
+            cmd.CommandType = CommandType.Text;
+            SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+            DataSet dset = new DataSet();
+
+            adapter.Fill(dset, "modules");
+            foreach (DataRow row in dset.Tables["modules"].Rows)
+            {
+                modulelist.Add(row["ModuleId"]);
+            }
+            connection.Close();
+            return modulelist;
+        }
 
         public static string GetModuleType(int moduledefid)
         {
@@ -129,6 +144,59 @@ namespace MyWebSite.Modules
             string filename = readder.GetString(2);
             connection.Close();
             return filename;
+        }
+
+        public static string GetModuleName(int moduleid)
+        {
+            SqlConnection connection = ConnectionManager.GetDatabaseConnection();
+            string select = string.Format("SELECT ModuleDefinition.ModuleDefinitionName FROM modules INNER JOIN ModuleDefinition ON modules.ModuleDefinitionId = ModuleDefinition.ModuleDefinitionId WHERE modules.ModuleId='{0}'", moduleid.ToString());
+            SqlCommand cmd = new SqlCommand(select, connection);
+            cmd.CommandType = CommandType.Text;
+            SqlDataReader reader;
+            reader = cmd.ExecuteReader();
+            reader.Read();
+
+            string modulename = reader["ModuleDefinitionName"].ToString();
+            connection.Close();
+            return modulename;
+        }
+
+        public static void MoveModuleUp(int moduleid)
+        {
+            Module module = ModuleData.LoadModuleData(moduleid);
+            ArrayList modulelist = ModuleData.GetModulesInPanel(module.PageId, module.PanelName);
+            int index = modulelist.IndexOf(moduleid);
+            if (index > 0)
+            {
+                int prevmoduleid = int.Parse(modulelist[index - 1].ToString());
+                Module prevmodul = ModuleData.LoadModuleData(prevmoduleid);
+                int temp1 = module.ModuleOrder;
+                int temp2 = prevmodul.ModuleOrder;
+                module.ModuleOrder = temp2;
+                prevmodul.ModuleOrder = temp1;
+                ModuleData.UpdateModule(module);
+                ModuleData.UpdateModule(prevmodul);
+            }
+
+        }
+
+        public static void MoveModuleDown(int moduleid)
+        {
+            Module module = ModuleData.LoadModuleData(moduleid);
+            ArrayList modulelist = ModuleData.GetModulesInPanel(module.PageId, module.PanelName);
+            int index = modulelist.IndexOf(moduleid);
+            if (index < modulelist.Count - 1)
+            {
+                int succmoduleid = int.Parse(modulelist[index + 1].ToString());
+                Module succmodule = ModuleData.LoadModuleData(succmoduleid);
+                int temp1 = module.ModuleOrder;
+                int temp2 = succmodule.ModuleOrder;
+                module.ModuleOrder = temp2;
+                succmodule.ModuleOrder = temp1;
+                ModuleData.UpdateModule(module);
+                ModuleData.UpdateModule(succmodule);
+            }
+
         }
 
     }

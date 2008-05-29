@@ -11,9 +11,7 @@
                     <asp:LoginStatus ID="LoginStatus1" runat="server" LogoutAction="Redirect" LogoutPageUrl="~/Default.aspx" /><br />
                     <a href="Users.aspx">User Managment</a>
                     <a href="WebSite.aspx">CMS Setup</a>
-                    <a href="Navigation.aspx">Navigation</a>
-                    <a href="Sections.aspx">Sections</a>
-                    
+                    <a href="Navigation.aspx">Navigation</a>                    
                 </ContentTemplate>
             </asp:RoleGroup>
         </RoleGroups>
