@@ -19,7 +19,7 @@ namespace MyWebSite
         {
             base.OnPreInit(e);
             website = SiteDataManage.LoadData();
-
+            Theme = website.Theme;
         }
     }
 }

@@ -8,8 +8,9 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Web.UI.HtmlControls;
+using MyWebSite;
 
-public partial class ForgotPassword : System.Web.UI.Page
+public partial class ForgotPassword : PageBaseClass
 {
     protected void Page_Load(object sender, EventArgs e)
     {
