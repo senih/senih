@@ -17,7 +17,7 @@ public partial class Administration_WebSite : PageBaseClass
     {
         if ((!IsPostBack) && (User.Identity.IsAuthenticated) && (User.IsInRole("administrators")))
         {
-            //TODO Language i Theme ne se definirani
+            //TODO Language ne e definirano
             TextBox SmtpServerTB = (TextBox)LoginView1.FindControl("SmtpServerTextBox");
             TextBox SmtpUserTB = (TextBox)LoginView1.FindControl("SmtpUserTextBox");
             TextBox SmtpPasswordTB = (TextBox)LoginView1.FindControl("SmtpPasswordTextBox");
@@ -27,6 +27,7 @@ public partial class Administration_WebSite : PageBaseClass
             TextBox WebSiteTitleTB = (TextBox)LoginView1.FindControl("WebSiteTitleTextBox");
             TextBox KeywordsTB = (TextBox)LoginView1.FindControl("KeywordsTextBox");
             TextBox DescriptionTB = (TextBox)LoginView1.FindControl("DescriptionTextBox");
+            DropDownList ThemeDDL = (DropDownList)LoginView1.FindControl("ThemeDropDownList");
             website = new WebSite();
             website = SiteDataManage.LoadData();
 
@@ -39,13 +40,14 @@ public partial class Administration_WebSite : PageBaseClass
             WebSiteTitleTB.Text = website.WebSiteTitle;
             KeywordsTB.Text = website.Keywords;
             DescriptionTB.Text = website.Description;
+            ThemeDDL.Text = website.Theme;
         }
 
 
     }
     protected void SaveButton_Click(object sender, EventArgs e)
     {
-        //TODO Language i Theme ne se definirani
+        //TODO Language ne e definirano
         TextBox SmtpServerTB = (TextBox)LoginView1.FindControl("SmtpServerTextBox");
         TextBox SmtpUserTB = (TextBox)LoginView1.FindControl("SmtpUserTextBox");
         TextBox SmtpPasswordTB = (TextBox)LoginView1.FindControl("SmtpPasswordTextBox");
@@ -55,6 +57,7 @@ public partial class Administration_WebSite : PageBaseClass
         TextBox WebSiteTitleTB = (TextBox)LoginView1.FindControl("WebSiteTitleTextBox");
         TextBox KeywordsTB = (TextBox)LoginView1.FindControl("KeywordsTextBox");
         TextBox DescriptionTB = (TextBox)LoginView1.FindControl("DescriptionTextBox");
+        DropDownList ThemeDDL = (DropDownList)LoginView1.FindControl("ThemeDropDownList");
 
 
         website = new WebSite();
@@ -69,6 +72,7 @@ public partial class Administration_WebSite : PageBaseClass
         website.WebSiteTitle = WebSiteTitleTB.Text;
         website.Keywords = KeywordsTB.Text;
         website.Description = DescriptionTB.Text;
+        website.Theme = ThemeDDL.SelectedValue;
 
         SiteDataManage.SaveData(website);
 

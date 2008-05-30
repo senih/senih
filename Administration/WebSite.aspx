@@ -68,8 +68,13 @@
                         </tr>
                         <tr>
                             <td >
+                                <asp:Label ID="lblTheme" runat="server" Text="Theme"></asp:Label>
                             </td>
                             <td >
+                                <asp:DropDownList ID="ThemeDropDownList" runat="server">
+                                    <asp:ListItem Value="Default" Text="Default Theme">
+                                    </asp:ListItem>
+                                </asp:DropDownList>
                             </td>
                         </tr>
                         <tr>

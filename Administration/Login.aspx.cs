@@ -8,8 +8,9 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Web.UI.HtmlControls;
+using MyWebSite;
 
-public partial class Login : System.Web.UI.Page
+public partial class Login : PageBaseClass
 {
     protected void Page_Load(object sender, EventArgs e)
     {
