@@ -9,7 +9,7 @@
 </head>
 <body>
     <cc:ActionLessForm id="form1" runat="server">
-    <div>        
+    <div>
         <asp:contentplaceholder id="mainContent" runat="server">
         </asp:contentplaceholder>
     </div>
