@@ -1,5 +1,7 @@
 <%@ Page Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="Registration.aspx.cs" Inherits="Registration" Title="Untitled Page" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="mainContent" Runat="Server">
+<div align="center" class="admin">
     <asp:CreateUserWizard ID="CreateUserWizard1" runat="server" ContinueDestinationPageUrl="~/Default.aspx"
         LoginCreatedUser="False" CompleteSuccessText="Your account need to be approved before you can use it!" DisableCreatedUser="True">
         <WizardSteps>
@@ -66,5 +68,6 @@
             </asp:CompleteWizardStep>
         </WizardSteps>
     </asp:CreateUserWizard>
+</div>
 </asp:Content>
 
