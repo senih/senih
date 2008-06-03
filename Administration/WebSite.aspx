@@ -1,9 +1,11 @@
 <%@ Page Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="WebSite.aspx.cs" Inherits="Administration_WebSite" Title="Untitled Page" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="mainContent" Runat="Server">
+<div align="center" class="admin">
     <asp:LoginView ID="LoginView1" runat="server">
         <RoleGroups>
             <asp:RoleGroup Roles="administrators">
                 <ContentTemplate>
+                    <asp:Label ID="TitleLabel" SkinID="TitleLabel" runat="server" Text="Content Managment System Setup"></asp:Label><br /><br /><br />
                     <table>
                         <tr>
                             <td >
@@ -89,28 +91,17 @@
                             <td >
                                 <asp:Button ID="ResetButton" runat="server" Text="RESET Website" OnClick="ResetButton_Click" /></td>
                         </tr>
-                        <tr>
-                            <td >
-                            </td>
-                            <td >
-                            </td>
-                        </tr>
-                        <tr>
-                            <td >
-                            </td>
-                            <td >
-                            </td>
-                        </tr>
                     </table>
                 </ContentTemplate>
             </asp:RoleGroup>
         </RoleGroups>
         <LoggedInTemplate>
-            You must be admin to see this page!
+            <asp:Label ID="Label1" runat="server" Text="You must be admin to see this page!"></asp:Label>
         </LoggedInTemplate>
         <AnonymousTemplate>
-            Unauthorized
+            <asp:Label ID="Label2" runat="server" Text="Unauthorized!"></asp:Label>
         </AnonymousTemplate>
     </asp:LoginView>
+</div>
 </asp:Content>
 

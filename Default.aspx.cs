@@ -17,8 +17,6 @@ public partial class _Default : PageBaseClass
     protected ArrayList modulelist;
     protected string url;
     private WebPage _page;
-    private Menu menu = new Menu();
-    SiteMapDataSource source = new SiteMapDataSource();
 
     protected void Page_Load(object sender, EventArgs e)
     {   
@@ -43,8 +41,6 @@ public partial class _Default : PageBaseClass
             SitemapEditor editor = new SitemapEditor();
             editor.Save();
         }
-        menu.DataSource = source;
-        menu.DataBind();
         string temp = Context.Items["VirtualPage"].ToString();
         string pageid = WebPageData.GetWebPageId(temp);
         _page = WebPageData.LoadPageData(pageid);
@@ -54,11 +50,6 @@ public partial class _Default : PageBaseClass
         else
             Title = website.WebSiteTitle;
 
-        LeftArea.Controls.Clear();
-        CenterArea.Controls.Clear();
-        RightArea.Controls.Clear();
-
-        LeftArea.Controls.Add(menu);
                 
         // Load all modules
 

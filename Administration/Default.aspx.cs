@@ -14,6 +14,10 @@ public partial class Administration_Default : PageBaseClass
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        if (User.Identity.IsAuthenticated == false)
+        Response.Redirect("~/administration/Login.aspx");
+        else
+            if (!User.IsInRole("administrators"))
+                Response.Redirect("~/administration/users.aspx");
     }
 }

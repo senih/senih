@@ -10,6 +10,9 @@
 <body>
     <cc:ActionLessForm id="form1" runat="server">
     <div>
+        <div align="right">
+            <asp:LoginStatus ID="LoginStatus1" LogoutAction="RedirectToLoginPage" runat="server" />
+        </div>
         <asp:contentplaceholder id="mainContent" runat="server">
         </asp:contentplaceholder>
     </div>

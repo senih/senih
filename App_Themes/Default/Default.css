@@ -51,4 +51,10 @@
 .admin
 {
     margin:50px auto;
+    background-color:#B0CBD7;
+    width:400px;
+    border-color:White;
+    border-width:2px;
+    border-style:solid;
+    padding:10px;
 }

@@ -9,6 +9,8 @@ using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Web.UI.HtmlControls;
 using MyWebSite;
+using MyWebSite.Modules;
+using System.Collections;
 
 
 public partial class Administration_Navigation : PageBaseClass
@@ -18,7 +20,7 @@ public partial class Administration_Navigation : PageBaseClass
     protected void Page_Load(object sender, EventArgs e)
     {
         if ((User.Identity.IsAuthenticated) && (User.IsInRole("administrators")))
-        {
+        {            
             TreeView pagesTV = (TreeView)LoginView1.FindControl("PagesTreeView");
             HtmlTable Table = (HtmlTable)LoginView1.FindControl("PageDetails");
             SiteMapDataSource source = (SiteMapDataSource)LoginView1.FindControl("SiteMapDataSource1");
@@ -27,7 +29,7 @@ public partial class Administration_Navigation : PageBaseClass
                 editor = new SitemapEditor();
                 editor.Save();
                 pagesTV.DataSource = source;
-                pagesTV.DataBind();                
+                pagesTV.DataBind();
             }
             Table.Visible = false;
         }
@@ -52,6 +54,7 @@ public partial class Administration_Navigation : PageBaseClass
     }
     protected void DeletePageBtn_Click(object sender, EventArgs e)
     {
+        
         HtmlTable Table = (HtmlTable)LoginView1.FindControl("PageDetails");
         TreeView pagesTV = (TreeView)LoginView1.FindControl("PagesTreeView");
         SiteMapDataSource source = (SiteMapDataSource)LoginView1.FindControl("SiteMapDataSource1");
@@ -59,7 +62,8 @@ public partial class Administration_Navigation : PageBaseClass
         {
             string temp = pagesTV.SelectedValue;
             string pageid = WebPageData.GetWebPageId(temp);
-            if (pageid != "1")
+            ArrayList list = ModuleData.GetAllModules(pageid);
+            if ((pageid != "1") && (list.Count == 0))
             {
                 WebPageData.DeletePage(pageid);
                 editor = new SitemapEditor();
@@ -87,20 +91,25 @@ public partial class Administration_Navigation : PageBaseClass
         CheckBox VisibleCB = (CheckBox)LoginView1.FindControl("VisibleCheckBox");
 
         string temp = pagesTV.SelectedValue;
-        string pageid = WebPageData.GetWebPageId(temp);
-        WebPage page = WebPageData.LoadPageData(pageid);
+        if (temp != "Site Map")
+        {
+            string pageid = WebPageData.GetWebPageId(temp);
+            WebPage page = WebPageData.LoadPageData(pageid);
 
-        TitleTB.Text = page.Title;
-        NavigationTB.Text = page.NavigationName;
-        VirtualPathTB.Text = page.VirtualPath;
-        VisibleCB.Checked = page.Visible;
-        AccessRolesDDL.DataSource = Roles.GetAllRoles();
-        AccessRolesDDL.DataBind();
-        AccessRolesDDL.Items.Insert(0, new ListItem("Anonymous", "Anonymous"));
-        AccessRolesDDL.SelectedValue = page.AccessRole;
-        EditRolesDDL.DataSource = Roles.GetAllRoles();
-        EditRolesDDL.DataBind();
-        EditRolesDDL.SelectedValue = page.EditRole;
+            TitleTB.Text = page.Title;
+            NavigationTB.Text = page.NavigationName;
+            VirtualPathTB.Text = page.VirtualPath;
+            VisibleCB.Checked = page.Visible;
+            AccessRolesDDL.DataSource = Roles.GetAllRoles();
+            AccessRolesDDL.DataBind();
+            AccessRolesDDL.Items.Insert(0, new ListItem("Anonymous", "Anonymous"));
+            AccessRolesDDL.SelectedValue = page.AccessRole;
+            EditRolesDDL.DataSource = Roles.GetAllRoles();
+            EditRolesDDL.DataBind();
+            EditRolesDDL.SelectedValue = page.EditRole;
+        }
+        else
+            Response.Redirect("~/administration/navigation.aspx");
 
     }
     protected void UpdatePageBtn_Click(object sender, EventArgs e)
