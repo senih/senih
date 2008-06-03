@@ -6,7 +6,13 @@
 <tr>
 <td>
 <div>
-    <div class="leftsidebar"><asp:PlaceHolder ID="LeftArea" runat="server"></asp:PlaceHolder></div>
+    <div class="leftsidebar">
+        <asp:PlaceHolder ID="LeftArea" runat="server">
+            <asp:SiteMapDataSource ID="SiteMapDataSource1" runat="server" />
+            <asp:Menu ID="Menu" runat="server" DataSourceID="SiteMapDataSource1">
+            </asp:Menu>
+        </asp:PlaceHolder>
+    </div>
     <div class="center">
         <asp:PlaceHolder ID="CenterArea" runat="server"></asp:PlaceHolder>
         <asp:Panel ID="AddModulePanel" runat="server">

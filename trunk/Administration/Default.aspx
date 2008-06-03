@@ -1,23 +1,20 @@
 <%@ Page Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="Default.aspx.cs" Inherits="Administration_Default" Title="Untitled Page" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="mainContent" Runat="Server">
+<div align="center" class="admin">
     <asp:LoginView ID="LoginView1" runat="server">
-        <AnonymousTemplate>
-            You are not authorized to view this content! Please <a href="Login.aspx">Log In</a>
-        </AnonymousTemplate>
         <RoleGroups>
             <asp:RoleGroup Roles="administrators">
                 <ContentTemplate>
-                    Administrator panel! 
-                    <asp:LoginStatus ID="LoginStatus1" runat="server" LogoutAction="Redirect" LogoutPageUrl="~/Administration/Login.aspx" /><br />
-                    <a href="Users.aspx">User Managment</a>
-                    <a href="WebSite.aspx">CMS Setup</a>
-                    <a href="Navigation.aspx">Navigation</a>                    
+                    <asp:Label ID="TitleLabe" SkinID="TitleLabel" runat="server" Text="Administrator panel"></asp:Label><br /><br />
+                    <div>
+                        <a href="Users.aspx">User Managment</a>
+                        <a href="WebSite.aspx">CMS Setup</a>
+                        <a href="Navigation.aspx">Navigation</a>
+                    </div>
                 </ContentTemplate>
             </asp:RoleGroup>
         </RoleGroups>
-        <LoggedInTemplate>
-            <a href="Users.aspx">Edit your account</a>
-        </LoggedInTemplate>
     </asp:LoginView>
+</div>
 </asp:Content>
 
