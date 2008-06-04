@@ -8,15 +8,11 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Web.UI.HtmlControls;
-using MyWebSite;
 
-public partial class MasterPage : System.Web.UI.MasterPage
+public partial class Administration_test : System.Web.UI.Page
 {
-    protected WebSite _website = SiteDataManage.LoadData();
-
     protected void Page_Load(object sender, EventArgs e)
     {
-        WebSiteTitleLabel.Text = _website.WebSiteTitle;
-        FooterLabel.Text = _website.FooterText;
+       HashTypeLabel.Text = "HashAlgorithmType is: " + Membership.HashAlgorithmType;
     }
 }

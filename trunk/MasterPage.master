@@ -9,12 +9,22 @@
 </head>
 <body>
     <cc:ActionLessForm id="form1" runat="server">
-    <div>
-        <div align="right">
-            <asp:LoginStatus ID="LoginStatus1" LogoutAction="RedirectToLoginPage" runat="server" />
-        </div>
+    <div class="wrapper">
+        <asp:Panel ID="TopPanel" runat="server" SkinID="TopPanel">
+            <div align="right">
+                <asp:LoginStatus ID="LoginStatus1" LogoutAction="RedirectToLoginPage" runat="server" />
+            </div>
+            <div align="center" class="header">
+                <asp:Label ID="WebSiteTitleLabel" runat="server" SkinID="WebSiteTitle" ></asp:Label>
+            </div>
+        </asp:Panel>
         <asp:contentplaceholder id="mainContent" runat="server">
         </asp:contentplaceholder>
+        <asp:Panel ID="BotomPanel" runat="server" SkinID="BotomPanel">
+            <div align="center" class="footer">
+                <asp:Label ID="FooterLabel" runat="server" SkinID="WebSiteFooter"></asp:Label>
+            </div>
+        </asp:Panel>
     </div>
     </cc:ActionLessForm>
 </body>

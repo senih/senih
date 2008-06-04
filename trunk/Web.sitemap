@@ -1,10 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <siteMap xmlns="http://schemas.microsoft.com/AspNet/SiteMap-File-1.0">
   <siteMapNode>
-    <siteMapNode url="~/default.aspx" title="Home Page" pageId="1" visible="True">
-    </siteMapNode>
-    <siteMapNode title="Page 1" url="~/page.aspx" pageId="6" visible="True" />
-    <siteMapNode title="Page 2" url="~/default7.aspx" pageId="7" visible="True" />
-    <siteMapNode title="Page 3" url="~/default8.aspx" pageId="8" visible="True" />
+    <siteMapNode url="~/default.aspx" title="Home" pageId="1" visible="True" />
+    <siteMapNode title="Products" url="~/products.aspx" pageId="9" visible="True" />
   </siteMapNode>
 </siteMap>

@@ -1,7 +1,6 @@
 <%@ Page Language="C#" MasterPageFile="~/MasterPage.master" ValidateRequest="false" AutoEventWireup="true" CodeFile="Default.aspx.cs" Inherits="_Default" Title="Untitled Page" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="mainContent" Runat="Server">
-<div class="wrapper">
 <table>
 <tr>
 <td>
@@ -33,6 +32,5 @@
 </td>
 </tr>
 </table>
-</div>
 </asp:Content>
 
