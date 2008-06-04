@@ -51,10 +51,20 @@
 .admin
 {
     margin:50px auto;
-    background-color:#B0CBD7;
+    background-color:White;
     width:400px;
-    border-color:White;
+    border-color:#5D7B9D;
     border-width:2px;
     border-style:solid;
     padding:10px;
+}
+
+.header
+{
+    margin-top:20px;
+}
+
+.footer
+{
+    padding-top:15px;
 }

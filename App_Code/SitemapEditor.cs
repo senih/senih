@@ -156,7 +156,7 @@ namespace MyWebSite
 
             node.Append("<?xml version=\"1.0\" encoding=\"utf-8\"?>");           
             node.Append("<siteMap xmlns=\"http://schemas.microsoft.com/AspNet/SiteMap-File-1.0\">");
-            node.Append("<siteMapNod>");
+            node.Append("<siteMapNode>");
             //node.Append("   <siteMapNode>");
             //node.Append("       <siteMapNode url=\"~/Administration/Default.aspx\" title=\"Administration\"  />");
             //node.Append("       <siteMapNode url=\"~/Administration/Users.aspx\" title=\"User Managment\" />");

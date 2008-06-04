@@ -8,8 +8,7 @@
 <asp:Label runat="server" SkinID="TitleLabel" BackColor="#5D7B9D" ForeColor="White" Font-Bold="True" 
 Font-Size="11px" BorderColor="#5D7B9D" BorderStyle="Solid" BorderWidth="3px"></asp:Label>
 
-<asp:LoginStatus BackColor="#B0CBD7" Font-Size="12px" Font-Bold="true" BorderColor="#B0CBD7" BorderStyle="solid" 
-BorderWidth="5px" ForeColor="Black" runat="server" />
+<asp:LoginStatus Font-Size="12px" Font-Bold="true" ForeColor="White" runat="server" />
 
 <asp:Login runat="server" BackColor="White" BorderColor="#5D7B9D" BorderPadding="4"
     BorderStyle="Solid" BorderWidth="2px" Font-Names="Verdana" Font-Size="11px"
@@ -70,10 +69,20 @@ BorderWidth="5px" ForeColor="Black" runat="server" />
         NodeSpacing="1px" VerticalPadding="2px" />
 </asp:TreeView>
 
-<asp:Menu runat="server" StaticDisplayLevels="2" BorderColor="White" BorderStyle="Solid" BorderWidth="2px"
+<asp:Menu runat="server" StaticDisplayLevels="5" BorderColor="White" BorderStyle="Solid" BorderWidth="2px"
  BackColor="#5D7B9D" DynamicHorizontalOffset="2" Font-Bold="true" Font-Names="Verdana" Font-Size="12px" ForeColor="White" StaticSubMenuIndent="10px">
     <StaticSelectedStyle BackColor="#B0CBD7" ForeColor="Black" />
     <StaticMenuItemStyle HorizontalPadding="5px" VerticalPadding="5px" />
     <StaticHoverStyle BackColor="White" ForeColor="#5D7B9D" />
     <StaticMenuStyle HorizontalPadding="5px" VerticalPadding="5px" />
 </asp:Menu>
+
+
+<asp:Panel runat="server" SkinID="TopPanel" Height="100px" Width="1000px" BackImageUrl="~/App_Themes/Default/Images/header_back.jpg">
+</asp:Panel>
+
+<asp:Panel runat="server" SkinID="BotomPanel" BackColor="#12536f" Height="50px" Width="1000px"></asp:Panel>
+
+<asp:Label runat="server" SkinID="WebSiteTitle" ForeColor="White" Font-Bold="true" Font-Names="Verdana" Font-Size="32px" ></asp:Label>
+
+<asp:Label runat="server" SkinID="WebSiteFooter" ForeColor="White"></asp:Label>

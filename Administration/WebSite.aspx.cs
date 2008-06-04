@@ -85,17 +85,16 @@ public partial class Administration_WebSite : PageBaseClass
         collection = Membership.GetAllUsers();
         foreach (MembershipUser user in collection)
         {
-            if (user.ToString() != "admin")
-            {
-                Membership.DeleteUser(user.ToString());
-            }
+            Membership.DeleteUser(user.ToString());
         }
         FormsAuthentication.SignOut();
+        Membership.CreateUser("admin", "admin", "admin@mywebsite.com");
         MembershipUser admin = Membership.GetUser("admin");
-        admin.ResetPassword();
-        string password = admin.GetPassword();
-        admin.ChangePassword(password, "admin");
         admin.IsApproved = true;
+        if (!Roles.IsUserInRole("admin", "administrators"))
+        {
+            Roles.AddUserToRole("admin", "administrators");
+        }
         Membership.UpdateUser(admin);
         Response.Redirect("~/default.aspx");
     }

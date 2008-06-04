@@ -142,6 +142,7 @@
                     </td>
                 </tr>
             </table>
+            <asp:Label ID="UserStatusLabel" runat="server"></asp:Label>
         </LoggedInTemplate>
      </asp:LoginView>
 </div>
