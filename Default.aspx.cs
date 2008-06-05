@@ -42,6 +42,8 @@ public partial class _Default : PageBaseClass
             editor.Save();
         }
         string temp = Context.Items["VirtualPage"].ToString();
+        if (temp == "/")
+            temp = "~/default.aspx";
         string pageid = WebPageData.GetWebPageId(temp);
         _page = WebPageData.LoadPageData(pageid);
 
