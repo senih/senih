@@ -18,5 +18,24 @@ public partial class MasterPage : System.Web.UI.MasterPage
     {
         WebSiteTitleLabel.Text = _website.WebSiteTitle;
         FooterLabel.Text = _website.FooterText;
+        if (Page.User.Identity.IsAuthenticated)
+        {
+            MainContentLinkButton.Text = "Main Content";
+            MainContentLinkButton.Visible = true;
+            MainContentLinkButton.PostBackUrl = "~/default.aspx";
+            if (Page.User.IsInRole("administrators"))
+            {
+                AdminLinkButton.Text = "Admin Panel";
+            }
+            else
+                AdminLinkButton.Text = "Edit Account";
+            AdminLinkButton.Visible = true;
+            AdminLinkButton.PostBackUrl = "~/administration/default.aspx";
+        }
+        else
+        {
+            MainContentLinkButton.Visible = false;
+            AdminLinkButton.Visible = false;
+        }
     }
 }

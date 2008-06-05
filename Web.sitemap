@@ -2,6 +2,6 @@
 <siteMap xmlns="http://schemas.microsoft.com/AspNet/SiteMap-File-1.0">
   <siteMapNode>
     <siteMapNode url="~/default.aspx" title="Home" pageId="1" visible="True" />
-    <siteMapNode title="Products" url="~/products.aspx" pageId="9" visible="True" />
+    <siteMapNode title="New Page" url="~/default10.aspx" pageId="10" visible="True" />
   </siteMapNode>
 </siteMap>

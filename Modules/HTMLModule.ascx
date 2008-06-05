@@ -9,7 +9,7 @@
             <tr>
                 <td>
                     <asp:TextBox ID="TitleTextBox" runat="server"></asp:TextBox>
-                    <editor:wysiwygeditor id="TextEditor" runat="server" EditMode="XHTMLBody"></editor:wysiwygeditor>                    
+                    <editor:wysiwygeditor id="TextEditor" runat="server" EditMode="XHTMLBody"></editor:wysiwygeditor>
                 </td>
             </tr>
             <tr>

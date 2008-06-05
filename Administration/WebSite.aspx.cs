@@ -75,6 +75,7 @@ public partial class Administration_WebSite : PageBaseClass
         website.Theme = ThemeDDL.SelectedValue;
 
         SiteDataManage.SaveData(website);
+        Response.Redirect(Request.RawUrl);
 
     }
     protected void ResetButton_Click(object sender, EventArgs e)

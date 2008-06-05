@@ -68,13 +68,17 @@ public partial class _Default : PageBaseClass
 
             if (!IsPostBack)
                 control.ViewMode = ViewMode.ReadOnly;
-                                                
-            if (module.PanelName == "CenterArea")
+            if ((User.IsInRole(module.EditRoles)) || User.IsInRole("administrators"))
                 CenterArea.Controls.Add(control);
-            if (module.PanelName == "LeftArea")
-                LeftArea.Controls.Add(control);
-            if (module.PanelName == "RightArea")
-                RightArea.Controls.Add(control);
+            else
+            {
+                if (module.PanelName == "CenterArea")
+                    CenterArea.Controls.Add(control);
+                if (module.PanelName == "LeftArea")
+                    LeftArea.Controls.Add(control);
+                if (module.PanelName == "RightArea")
+                    RightArea.Controls.Add(control);
+            }
         }
 
         HtmlMeta keywords = new HtmlMeta();
