@@ -86,3 +86,5 @@ Font-Size="11px" BorderColor="#5D7B9D" BorderStyle="Solid" BorderWidth="3px"></a
 <asp:Label runat="server" SkinID="WebSiteTitle" ForeColor="White" Font-Bold="true" Font-Names="Verdana" Font-Size="32px" ></asp:Label>
 
 <asp:Label runat="server" SkinID="WebSiteFooter" ForeColor="White"></asp:Label>
+
+<asp:LinkButton runat="server" Font-Size="12px" Font-Bold="true" ForeColor="White"></asp:LinkButton>

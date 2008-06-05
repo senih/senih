@@ -12,7 +12,9 @@
     <div class="wrapper">
         <asp:Panel ID="TopPanel" runat="server" SkinID="TopPanel">
             <div align="right">
-                <asp:LoginStatus ID="LoginStatus1" LogoutAction="RedirectToLoginPage" runat="server" />
+                <asp:LinkButton ID="MainContentLinkButton" runat="server"></asp:LinkButton>
+                <asp:LinkButton ID="AdminLinkButton" runat="server"></asp:LinkButton>
+                <asp:LoginStatus ID="LoginStatus1" LogoutAction="Redirect" LogoutPageUrl="~/Default.aspx" runat="server" />
             </div>
             <div align="center" class="header">
                 <asp:Label ID="WebSiteTitleLabel" runat="server" SkinID="WebSiteTitle" ></asp:Label>
