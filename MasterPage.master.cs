@@ -20,6 +20,7 @@ public partial class MasterPage : System.Web.UI.MasterPage
         FooterLabel.Text = _website.FooterText;
         if (Page.User.Identity.IsAuthenticated)
         {
+            LoginStatus1.Visible = true;
             MainContentLinkButton.Text = "Main Content";
             MainContentLinkButton.Visible = true;
             MainContentLinkButton.PostBackUrl = "~/default.aspx";
@@ -34,6 +35,7 @@ public partial class MasterPage : System.Web.UI.MasterPage
         }
         else
         {
+            LoginStatus1.Visible = false;
             MainContentLinkButton.Visible = false;
             AdminLinkButton.Visible = false;
         }
